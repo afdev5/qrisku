@@ -1,0 +1,101 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:4926969378227210198",
+      "lastPropertyId": "8:9194802429701303094",
+      "name": "InfoQrisModel",
+      "properties": [
+        {
+          "id": "1:357513995665571375",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5873629002209903155",
+          "name": "idQris",
+          "type": 9
+        },
+        {
+          "id": "3:2192692213083123333",
+          "name": "nmId",
+          "type": 9
+        },
+        {
+          "id": "4:5415803257563530285",
+          "name": "merchantName",
+          "type": 9
+        },
+        {
+          "id": "5:3802964977061114749",
+          "name": "pencetak",
+          "type": 9
+        },
+        {
+          "id": "6:2630445001898515148",
+          "name": "nns",
+          "type": 9
+        },
+        {
+          "id": "7:1000892027392050194",
+          "name": "crc",
+          "type": 9
+        },
+        {
+          "id": "8:9194802429701303094",
+          "name": "defaultCode",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:6052130115711228846",
+      "lastPropertyId": "5:6673868141499973978",
+      "name": "ConvertQrisModel",
+      "properties": [
+        {
+          "id": "1:7268303825882968023",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:4891668730381067859",
+          "name": "dateTime",
+          "type": 10
+        },
+        {
+          "id": "3:1423917348340763101",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "4:4490901541058138945",
+          "name": "nominal",
+          "type": 9
+        },
+        {
+          "id": "5:6673868141499973978",
+          "name": "dataQr",
+          "type": 9
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "2:6052130115711228846",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}
