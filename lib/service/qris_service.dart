@@ -1,3 +1,4 @@
+import 'package:qris/qris.dart';
 import 'package:qrisku/models/info_qris_model.dart';
 
 class QrisService {
@@ -34,32 +35,63 @@ class QrisService {
     return result;
   }
 
+  // Future<InfoQrisModel> getInfoQris(String val) async {
+  //   var dumpNmid = getBetween(val, "15ID", "0303");
+  //   var nmId = "ID" + dumpNmid;
+  //   var searchId = RegExp('A01').stringMatch(val);
+  //   var id = searchId == null ? "01" : "A01";
+  //   var merchantName =
+  //       getBetween(val, "ID59", "60").substring(2).trim().toUpperCase();
+  //   var regexPencetak = RegExp('(?<=ID|COM).+?(?=0118)');
+  //   var getPencetak = regexPencetak.stringMatch(val);
+  //   var jmlPencetak = getPencetak?.split('.');
+  //   var pencetak =
+  //       jmlPencetak?.length == 3 ? jmlPencetak![1] : jmlPencetak?.last;
+  //   var regexNns = RegExp('(?<=0118).+?(?=ID)');
+  //   var getNns = regexNns.stringMatch(val);
+  //   var strnoncrc = val.substring(0, val.length - 4);
+  //   var crc = val.substring(val.length - 4);
+  //   var getCrc = toCRC16(strnoncrc);
+  //   var cekCrc = (crc == getCrc);
+  //   return InfoQrisModel(
+  //       defaultCode: val,
+  //       crc: crc,
+  //       idQris: id,
+  //       merchantName: merchantName,
+  //       nmId: nmId,
+  //       nns: getNns,
+  //       pencetak: pencetak ?? '');
+  // }
+
   Future<InfoQrisModel> getInfoQris(String val) async {
     var dumpNmid = getBetween(val, "15ID", "0303");
     var nmId = "ID" + dumpNmid;
     var searchId = RegExp('A01').stringMatch(val);
     var id = searchId == null ? "01" : "A01";
     var merchantName =
-        getBetween(val, "ID59", "60").substring(2).trim().toUpperCase();
+    getBetween(val, "ID59", "60").substring(2).trim().toUpperCase();
     var regexPencetak = RegExp('(?<=ID|COM).+?(?=0118)');
     var getPencetak = regexPencetak.stringMatch(val);
     var jmlPencetak = getPencetak?.split('.');
     var pencetak =
-        jmlPencetak?.length == 3 ? jmlPencetak![1] : jmlPencetak?.last;
+    jmlPencetak?.length == 3 ? jmlPencetak![1] : jmlPencetak?.last;
     var regexNns = RegExp('(?<=0118).+?(?=ID)');
     var getNns = regexNns.stringMatch(val);
     var strnoncrc = val.substring(0, val.length - 4);
     var crc = val.substring(val.length - 4);
     var getCrc = toCRC16(strnoncrc);
     var cekCrc = (crc == getCrc);
+    final qris = QRIS(val);
+    // print('${qris.merchantName}, ${qris.rawMapData} , ${qris.merchantAccountDomestic?.merchantID}');
+    final newPencetak = qris.merchants.first.globallyUniqueIdentifier?.replaceAll('ID', '').replaceAll('CO', '').replaceAll('WWW', '').replaceAll('.', '');
     return InfoQrisModel(
         defaultCode: val,
         crc: crc,
         idQris: id,
-        merchantName: merchantName,
-        nmId: nmId,
+        merchantName: qris.merchantName ?? merchantName,
+        nmId: qris.merchantAccountDomestic?.merchantID?.toString() ?? nmId,
         nns: getNns,
-        pencetak: pencetak ?? '');
+        pencetak: newPencetak ?? pencetak ?? '');
   }
 
   String toCRC16(String val) {
@@ -80,7 +112,7 @@ class QrisService {
     if (fixCrc16.length == 3) {
       fixCrc16 = "0" + fixCrc16;
     }
-    return fixCrc16;
+    return fixCrc16.toUpperCase();
   }
 
   String pad(int d) {

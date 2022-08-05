@@ -20,11 +20,15 @@ class ObjectBox {
     return ObjectBox._init(store);
   }
   ///Default Qris
-  InfoQrisModel? getDefaultQris() => _defaultQrisBox.query().build().findFirst();
+  InfoQrisModel? getDefaultQris() => _defaultQrisBox.query().build().find().last;
 
   int insertDefaultQris(InfoQrisModel data) => _defaultQrisBox.put(data);
 
-  int deleteDefaultQris() => _defaultQrisBox.removeAll();
+  Future<int> deleteDefaultQris() async {
+    await _defaultQrisBox.removeAll();
+    await _qrisBox.removeAll();
+    return 0;
+  }
 
   ///Convert Qris
   ConvertQrisModel? getData(int id) => _qrisBox.get(id);

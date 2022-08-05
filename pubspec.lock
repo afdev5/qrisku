@@ -387,6 +387,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.6.0"
+  intl:
+    dependency: "direct main"
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.0"
   io:
     dependency: transitive
     description:
@@ -500,7 +507,7 @@ packages:
     source: hosted
     version: "1.8.0"
   path_provider:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: path_provider
       url: "https://pub.dartlang.org"
@@ -660,6 +667,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  qris:
+    dependency: "direct main"
+    description:
+      name: qris
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0"
   screenshot:
     dependency: "direct main"
     description:
@@ -668,7 +682,7 @@ packages:
     source: hosted
     version: "1.2.3"
   share_plus:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: share_plus
       url: "https://pub.dartlang.org"

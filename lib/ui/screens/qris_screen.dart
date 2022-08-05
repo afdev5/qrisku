@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:get/get.dart';
@@ -27,6 +28,7 @@ class _QrisScreenState extends State<QrisScreen> {
   @override
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
+    ScreenUtil.init(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xfff11542).withOpacity(0.8),
@@ -135,7 +137,7 @@ class _QrisScreenState extends State<QrisScreen> {
               child: QrImage(
                 data: widget.data,
                 version: QrVersions.auto,
-                size: 200,
+                size: 200.sp,
               ),
             ),
             Positioned(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:qrisku/ui/screens/qris_screen.dart';
+
 
 class CardHistory extends StatelessWidget {
   final String? title;
@@ -19,7 +21,7 @@ class CardHistory extends StatelessWidget {
         child: ListTile(
           // isThreeLine: true,
           title: Text(
-            'Rp. $title',
+            '${CurrencyFormat().convertToIdr(double.parse(title ?? '0'), 0)}',
             style: const TextStyle(color: Color(0xff0f1735), fontWeight: FontWeight.bold),
           ),
           leading: const Icon(Icons.qr_code_2),
@@ -28,5 +30,17 @@ class CardHistory extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+
+class CurrencyFormat {
+  String convertToIdr(double number, int decimalDigit) {
+    NumberFormat currencyFormatter = NumberFormat.currency(
+      locale: 'id',
+      symbol: 'Rp ',
+      decimalDigits: decimalDigit,
+    );
+    return currencyFormatter.format(number);
   }
 }

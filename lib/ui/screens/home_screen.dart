@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: tabIndex == 0 ? Color(0xfff11542) : null,
       body: tabIndex == 0
           ? _body(_size)
-          : SetupQrisScreen(bloc: _defaultQrisBloc),
+          : SetupQrisScreen(bloc: _defaultQrisBloc, qrisBloc: _qrisBloc,),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: tabIndex,
         onTap: (index) {

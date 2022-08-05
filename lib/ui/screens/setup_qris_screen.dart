@@ -5,11 +5,13 @@ import 'package:flutter_qr_reader/flutter_qr_reader.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:barcode_scan2/barcode_scan2.dart';
+import 'package:qrisku/bloc/convert_qris/qris_bloc.dart';
 import 'package:qrisku/bloc/default_qris/default_qris_bloc.dart';
 
 class SetupQrisScreen extends StatefulWidget {
   final DefaultQrisBloc bloc;
-  const SetupQrisScreen({Key? key, required this.bloc}) : super(key: key);
+  final QrisBloc qrisBloc;
+  const SetupQrisScreen({Key? key, required this.bloc, required this.qrisBloc}) : super(key: key);
 
   @override
   State<SetupQrisScreen> createState() => _SetupQrisScreenState();
@@ -41,6 +43,7 @@ class _SetupQrisScreenState extends State<SetupQrisScreen> {
             },
           );
         } else {
+          widget.qrisBloc.add(GetAllQris(isFromHome: true));
           Navigator.pop(context);
           showDialog(
             context: context,

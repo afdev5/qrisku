@@ -30,6 +30,7 @@ class DefaultQrisBloc extends Bloc<DefaultQrisEvent, DefaultQrisState> {
           if(info.merchantName.isEmpty || info.pencetak.isEmpty || info.idQris.isEmpty || info.nmId.isEmpty) {
             emit(state.copyWith(isLoading: false, isError: true, message: 'QRIS tidak sesuai, coba lagi'));
           } else {
+            await service.deleteDefaultQris();
             var id = await service.insertDefaultQris(info);
             var data = await service.getDefaultQris();
             emit(state.copyWith(data: data, isLoading: false, message: 'Berhasil menambahkan default QRIS'));
